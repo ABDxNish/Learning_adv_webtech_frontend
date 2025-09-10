@@ -1,11 +1,46 @@
-'use client';
-import Link from 'next/link';
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function AdminDashboard() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
+  const [adminId, setAdminId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const verifySession = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3001/adminP/check-session",
+          { withCredentials: true }
+        );
+
+        if (response.data.loggedIn) {
+          setAdminId(response.data.id);
+          setLoading(false);
+        } else {
+          router.push("/HomePage/LogIn"); // redirect to login
+        }
+      } catch (err) {
+        console.error("Session check failed:", err);
+        router.push("/HomePage/LogIn");
+      }
+    };
+
+    verifySession();
+  }, [router]);
+
+  if (loading) {
+    return <p>Checking session...</p>;
+  }
+
   return (
     <>
       <h1>Admin Dashboard</h1>
-      <p>Welcome, Admin! Manage your system from here.</p>
+      <p>Welcome, Admin {adminId}!</p>
       <img
         src="/images/Admin-Profile-Vector-PNG-Image.png"
         alt="Admin Dashboard"
@@ -21,7 +56,9 @@ export default function AdminDashboard() {
               </Link>
             </td>
             <td>
+              <Link href="/HomePage/ViewAgency">
               <button>🏢 View Agencies</button>
+              </Link>
             </td>
           </tr>
 
@@ -36,7 +73,9 @@ export default function AdminDashboard() {
 
           <tr>
             <td>
+              <Link href="/HomePage/AddAgency">
               <button>➕ Add Agency</button>
+              </Link>
             </td>
             <td>
               <button>✏️ Edit Agency</button>
@@ -47,6 +86,11 @@ export default function AdminDashboard() {
             <td>
               <button>⚙️ Edit Profile</button>
             </td>
+             <td>
+    <button onClick={() => router.push("/HomePage/ResetPassword")}>
+      🔑 Reset Password
+    </button>
+  </td>
             <td>
               <Link href="/HomePage">
                 <button>🏠 Back to Home</button>

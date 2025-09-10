@@ -40,12 +40,12 @@ const signUpSchema = z
   });
 
 
-// TypeScript type
+
 
 type SignUpFormData = z.infer<typeof signUpSchema>;
 
 
-// Component
+
 
 export default function Signup() {
   const [preview, setPreview] = useState<string | null>(null);
@@ -60,7 +60,7 @@ export default function Signup() {
   });
 
   const onSubmit = async (data: SignUpFormData) => {
-    console.log("✅ Valid Data:", data);
+    console.log(" Valid Data:", data);
 
     const formData = new FormData();
     formData.append("name", data.name);
@@ -142,7 +142,7 @@ export default function Signup() {
   }}
 />
 
-                {errors.myfile && <p style={{ color: "red" }}>{errors.myfile.message}</p>}
+                {errors.myfile && <p style={{ color: "red" }}>{errors.myfile.message as string}</p>}
               </td>
             </tr>
 
