@@ -62,9 +62,7 @@ export default function ViewAgencies() {
               <p>
                 <strong>Agency Email:</strong> {agency.email}
               </p>
-              <p>
-                <strong>Agency Address:</strong> {agency.address}
-              </p>
+             
               <p>
                 <strong>Agency Added By:</strong>{' '}
                 <Link

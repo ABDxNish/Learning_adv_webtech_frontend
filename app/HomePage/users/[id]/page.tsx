@@ -68,9 +68,7 @@ export default function Users({ params }: { params: Promise<{ id: string }> }) {
             <p>
               <strong>Agency Email:</strong> {agency.email}
             </p>
-            <p>
-              <strong>Agency Address:</strong> {agency.address}
-            </p>
+            
           </div>
         ))
       )}
