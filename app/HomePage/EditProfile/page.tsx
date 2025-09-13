@@ -89,33 +89,53 @@ export default function EditProfile() {
   };
 
   return (
-    <>
-      <h1>⚙️ Edit Profile</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <table>
-          <tbody>
-            <tr>
-              <td>Upload New Photo:</td>
-              <td>
-                <input type="file" {...register("file")} />
-                {errors.file && (
-                  <p style={{ color: "red" }}>{errors.file.message as string}</p>
-                )}
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>
-                <button type="submit">📤 Update Photo</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-      {message && <p>{message}</p>}
-      <button onClick={() => router.push("/HomePage/AdminDashboard")}>
-        🔙 Back to Dashboard
-      </button>
-    </>
+    <div className="flex items-center justify-center min-h-screen bg-blue-100 p-6">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
+        <h1 className="text-2xl font-bold text-center text-blue-600 mb-6">
+          ⚙️ Edit Profile
+        </h1>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* File Upload */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Upload New Photo
+            </label>
+            <input
+              type="file"
+              {...register("file")}
+              className="mt-1 block w-full text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            {errors.file && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.file.message as string}
+              </p>
+            )}
+          </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
+          >
+            📤 Update Photo
+          </button>
+        </form>
+
+        {message && (
+          <p className="mt-4 text-center text-blue-600 font-medium">
+            {message}
+          </p>
+        )}
+
+        {/* Back to Dashboard */}
+        <button
+          onClick={() => router.push("/HomePage/AdminDashboard")}
+          className="w-full mt-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg transition duration-200"
+        >
+          🔙 Back to Dashboard
+        </button>
+      </div>
+    </div>
   );
 }

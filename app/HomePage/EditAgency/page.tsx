@@ -86,55 +86,73 @@ export default function EditAgency() {
   if (loading) return <p>Checking session...</p>;
 
   return (
-    <>
-      <h1>Edit Agency</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <table>
-          <tbody>
-            <tr>
-              <td>Agency ID:</td>
-              <td>
-                <input
-                  type="number"
-                  {...register("id", { valueAsNumber: true })}
-                />
-                {errors.id && (
-                  <p style={{ color: "red" }}>{errors.id.message}</p>
-                )}
-              </td>
-            </tr>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-6">
+      <div className="w-full max-w-lg bg-white shadow-xl rounded-2xl p-8">
+        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
+          ✏️ Edit Agency
+        </h1>
 
-            <tr>
-              <td>Agency Name:</td>
-              <td>
-                <input type="text" {...register("name")} />
-                {errors.name && (
-                  <p style={{ color: "red" }}>{errors.name.message}</p>
-                )}
-              </td>
-            </tr>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Agency ID */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Agency ID
+            </label>
+            <input
+              type="number"
+              {...register("id", { valueAsNumber: true })}
+              className="mt-1 block w-full rounded-lg border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+            {errors.id && (
+              <p className="text-red-500 text-sm">{errors.id.message}</p>
+            )}
+          </div>
 
-            <tr>
-              <td>Email:</td>
-              <td>
-                <input type="email" {...register("email")} />
-                {errors.email && (
-                  <p style={{ color: "red" }}>{errors.email.message}</p>
-                )}
-              </td>
-            </tr>
+          {/* Agency Name */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Agency Name
+            </label>
+            <input
+              type="text"
+              {...register("name")}
+              className="mt-1 block w-full rounded-lg border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+            {errors.name && (
+              <p className="text-red-500 text-sm">{errors.name.message}</p>
+            )}
+          </div>
 
-            <tr>
-              <td></td>
-              <td>
-                <button type="submit">✏️ Update Agency</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Email
+            </label>
+            <input
+              type="email"
+              {...register("email")}
+              className="mt-1 block w-full rounded-lg border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
+          </div>
 
-      {message && <p style={{ color: "red" }}>{message}</p>}
-    </>
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
+          >
+            ✏️ Update Agency
+          </button>
+        </form>
+
+        {message && (
+          <p className="mt-4 text-center text-red-500 font-medium">
+            {message}
+          </p>
+        )}
+      </div>
+    </div>
   );
 }

@@ -53,42 +53,60 @@ export default function ResetPassword() {
   };
 
   return (
-    <>
-      <h1>Reset Password</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <table>
-          <tbody>
-            <tr>
-              <td>New Password:</td>
-              <td>
-                <input type="password" {...register("newPass")} />
-                {errors.newPass && (
-                  <p style={{ color: "red" }}>{errors.newPass.message}</p>
-                )}
-              </td>
-            </tr>
+    <div className="flex items-center justify-center min-h-screen bg-blue-100 p-6">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
+        <h1 className="text-2xl font-bold text-center text-blue-600 mb-6">
+          🔑 Reset Password
+        </h1>
 
-            <tr>
-              <td>Confirm Password:</td>
-              <td>
-                <input type="password" {...register("confirmPass")} />
-                {errors.confirmPass && (
-                  <p style={{ color: "red" }}>{errors.confirmPass.message}</p>
-                )}
-              </td>
-            </tr>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* New Password */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              New Password
+            </label>
+            <input
+              type="password"
+              {...register("newPass")}
+              className="mt-1 block w-full rounded-lg border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+            {errors.newPass && (
+              <p className="text-red-500 text-sm">{errors.newPass.message}</p>
+            )}
+          </div>
 
-            <tr>
-              <td></td>
-              <td>
-                <button type="submit">Update Password</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
+          {/* Confirm Password */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              {...register("confirmPass")}
+              className="mt-1 block w-full rounded-lg border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+            {errors.confirmPass && (
+              <p className="text-red-500 text-sm">
+                {errors.confirmPass.message}
+              </p>
+            )}
+          </div>
 
-      {message && <p>{message}</p>}
-    </>
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
+          >
+            Update Password
+          </button>
+        </form>
+
+        {message && (
+          <p className="mt-4 text-center text-blue-600 font-medium">
+            {message}
+          </p>
+        )}
+      </div>
+    </div>
   );
 }

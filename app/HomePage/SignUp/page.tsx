@@ -1,11 +1,9 @@
 "use client";
-
 import Link from "next/link";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-
 
 const signUpSchema = z
   .object({
@@ -20,7 +18,6 @@ const signUpSchema = z
       .regex(/\d/, "Password must contain at least one number"),
     confirmPass: z.string(),
     add: z.string().min(3, "Address must be at least 3 characters"),
-
     myfile: z
       .any()
       .refine((file) => file instanceof File, "Please select a file")
@@ -39,13 +36,7 @@ const signUpSchema = z
     path: ["confirmPass"],
   });
 
-
-
-
 type SignUpFormData = z.infer<typeof signUpSchema>;
-
-
-
 
 export default function Signup() {
   const [preview, setPreview] = useState<string | null>(null);
@@ -70,7 +61,6 @@ export default function Signup() {
     formData.append("myfile", data.myfile);
     formData.append("add", data.add);
 
-
     try {
       const response = await fetch("http://localhost:3001/adminP/addAdminM", {
         method: "POST",
@@ -86,89 +76,137 @@ export default function Signup() {
   };
 
   return (
-    <>
-      <h1>Signup Page</h1>
-      <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
-        <table>
-          <tbody>
-            <tr>
-              <td>Full Name:</td>
-              <td>
-                <input type="text" {...register("name")} />
-                {errors.name && <p style={{ color: "red" }}>{errors.name.message}</p>}
-              </td>
-            </tr>
+    <div className="min-h-screen flex items-center justify-center bg-blue-50">
+      <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-lg">
+        <h1 className="text-2xl font-bold text-center text-blue-700 mb-6">
+          Signup Page
+        </h1>
 
-            <tr>
-              <td>Username:</td>
-              <td>
-                <input type="text" {...register("uname")} />
-                {errors.uname && <p style={{ color: "red" }}>{errors.uname.message}</p>}
-              </td>
-            </tr>
-
-            <tr>
-              <td>Password:</td>
-              <td>
-                <input type="password" {...register("pass")} />
-                {errors.pass && <p style={{ color: "red" }}>{errors.pass.message}</p>}
-              </td>
-            </tr>
-
-            <tr>
-              <td>Confirm Password:</td>
-              <td>
-                <input type="password" {...register("confirmPass")} />
-                {errors.confirmPass && (
-                  <p style={{ color: "red" }}>{errors.confirmPass.message}</p>
-                )}
-              </td>
-            </tr>
-          <tr>
-  <td>Address:</td>
-  <td>
-    <input type="text" {...register("add")} />
-    {errors.add && <p style={{ color: "red" }}>{errors.add.message}</p>}
-  </td>
-</tr>
-
-            <tr>
-              <td>Upload Photo:</td>
-              <td>
-                <input  type="file"  accept="image/*"onChange={(e) => {
-    const file = e.target.files?.[0] || null; 
-    setValue("myfile", file, { shouldValidate: true }); 
-    if (file) setPreview(URL.createObjectURL(file)); 
-  }}
-/>
-
-                {errors.myfile && <p style={{ color: "red" }}>{errors.myfile.message as string}</p>}
-              </td>
-            </tr>
-
-            {preview && (
-              <tr>
-                <td></td>
-                <td>
-                  <img src={preview} alt="Preview" width={120} />
-                </td>
-              </tr>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          encType="multipart/form-data"
+          className="space-y-4"
+        >
+          {/* Full Name */}
+          <div>
+            <label className="block font-medium mb-1">Full Name</label>
+            <input
+              type="text"
+              {...register("name")}
+              className="textbox"
+              placeholder="Enter full name"
+            />
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
             )}
+          </div>
 
-            <tr>
-              <td></td>
-              <td>
-                <button type="submit">Signup</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
+          {/* Username */}
+          <div>
+            <label className="block font-medium mb-1">Username</label>
+            <input
+              type="text"
+              {...register("uname")}
+              className="textbox"
+              placeholder="Enter username"
+            />
+            {errors.uname && (
+              <p className="text-red-500 text-sm mt-1">{errors.uname.message}</p>
+            )}
+          </div>
 
-      <br />
-      <Link href="/HomePage/LogIn">
-        <button>Already have an account? Login</button>
-      </Link>
-    </>
+          {/* Password */}
+          <div>
+            <label className="block font-medium mb-1">Password</label>
+            <input
+              type="password"
+              {...register("pass")}
+              className="textbox"
+              placeholder="Enter password"
+            />
+            {errors.pass && (
+              <p className="text-red-500 text-sm mt-1">{errors.pass.message}</p>
+            )}
+          </div>
+
+          {/* Confirm Password */}
+          <div>
+            <label className="block font-medium mb-1">Confirm Password</label>
+            <input
+              type="password"
+              {...register("confirmPass")}
+              className="textbox"
+              placeholder="Re-enter password"
+            />
+            {errors.confirmPass && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.confirmPass.message}
+              </p>
+            )}
+          </div>
+
+          {/* Address */}
+          <div>
+            <label className="block font-medium mb-1">Address</label>
+            <input
+              type="text"
+              {...register("add")}
+              className="textbox"
+              placeholder="Enter address"
+            />
+            {errors.add && (
+              <p className="text-red-500 text-sm mt-1">{errors.add.message}</p>
+            )}
+          </div>
+
+          {/* File Upload */}
+          <div>
+            <label className="block font-medium mb-1">Upload Photo</label>
+            <input
+              type="file"
+              accept="image/*"
+              className="w-full text-sm text-blue-700 file:mr-4 file:py-2 file:px-4 
+                         file:rounded-lg file:border-0 file:text-sm file:font-semibold
+                         file:bg-blue-600 file:text-white hover:file:bg-blue-700 cursor-pointer"
+              onChange={(e) => {
+                const file = e.target.files?.[0] || null;
+                setValue("myfile", file, { shouldValidate: true });
+                if (file) setPreview(URL.createObjectURL(file));
+              }}
+            />
+            {errors.myfile && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.myfile.message as string}
+              </p>
+            )}
+          </div>
+
+          {/* Preview */}
+          {preview && (
+            <div className="mt-3">
+              <img
+                src={preview}
+                alt="Preview"
+                className="w-28 h-28 rounded-lg object-cover border border-blue-300"
+              />
+            </div>
+          )}
+
+          {/* Submit Button */}
+          <button type="submit" className="btn-primary w-full">
+            Signup
+          </button>
+        </form>
+
+        {/* Login Link */}
+        <div className="text-center mt-4">
+          <Link href="/HomePage/LogIn">
+            <button className="text-blue-600 hover:underline cursor-pointer">
+              Already have an account? Login
+            </button>
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 }

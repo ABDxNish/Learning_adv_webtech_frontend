@@ -28,13 +28,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
          <header>
-          <img 
-            src="/images/company-logo.png" 
-            alt="Company Logo" 
-            width="120" 
-          />
-          <h1>Royal Tour</h1>
-          <p>"Your Belief, Our Faith"</p>
+         
+          
         </header>
         {children}
         <footer>

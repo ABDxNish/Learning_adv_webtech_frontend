@@ -56,7 +56,7 @@ export default function AddAgency() {
     if (!adminId) return;
 
     try {
-      const response = await axios.post(
+      await axios.post(
         `http://localhost:3001/adminP/addAgencies/${adminId}`,
         data,
         { withCredentials: true }
@@ -72,52 +72,77 @@ export default function AddAgency() {
   };
 
   return (
-    <>
-      <h1>Add New Agency</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <table>
-          <tbody>
-            <tr>
-              <td>Agency Name:</td>
-              <td>
-                <input type="text" {...register("name")} />
-                {errors.name && (
-                  <p style={{ color: "red" }}>{errors.name.message}</p>
-                )}
-              </td>
-            </tr>
+    <div className="min-h-screen bg-blue-50 flex flex-col items-center justify-center p-6">
+      <div className="bg-white shadow-md rounded-lg p-8 w-[400px]">
+        <h1 className="text-2xl font-bold text-blue-700 mb-6 text-center">
+          ➕ Add New Agency
+        </h1>
 
-            <tr>
-              <td>Email:</td>
-              <td>
-                <input type="email" {...register("email")} />
-                {errors.email && (
-                  <p style={{ color: "red" }}>{errors.email.message}</p>
-                )}
-              </td>
-            </tr>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Agency Name */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Agency Name
+            </label>
+            <input
+              type="text"
+              {...register("name")}
+              className="textbox w-full"
+              placeholder="Enter agency name"
+            />
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.name.message}
+              </p>
+            )}
+          </div>
 
-            <tr>
-              <td>Address:</td>
-              <td>
-                <input type="text" {...register("address")} />
-                {errors.address && (
-                  <p style={{ color: "red" }}>{errors.address.message}</p>
-                )}
-              </td>
-            </tr>
+          {/* Email */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">Email</label>
+            <input
+              type="email"
+              {...register("email")}
+              className="textbox w-full"
+              placeholder="Enter email"
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>
+            )}
+          </div>
 
-            <tr>
-              <td></td>
-              <td>
-                <button type="submit">➕ Add Agency</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
+          {/* Address */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Address
+            </label>
+            <input
+              type="text"
+              {...register("address")}
+              className="textbox w-full"
+              placeholder="Enter address"
+            />
+            {errors.address && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.address.message}
+              </p>
+            )}
+          </div>
 
-      {message && <p>{message}</p>}
-    </>
+          {/* Submit Button */}
+          <button type="submit" className="btn-primary w-full">
+            ➕ Add Agency
+          </button>
+        </form>
+
+        {message && (
+          <p className="text-center mt-4 text-gray-700 font-medium">
+            {message}
+          </p>
+        )}
+      </div>
+    </div>
   );
 }
