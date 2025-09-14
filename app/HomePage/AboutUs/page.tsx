@@ -6,14 +6,14 @@ export default function AboutUs() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-600 to-blue-400 flex items-center justify-center px-6 py-12">
       <div className="max-w-4xl w-full bg-white rounded-3xl shadow-2xl p-10 text-gray-800">
-        {/* Title */}
+        
         <h1 className="mb-6 text-5xl font-extrabold text-center text-blue-700 drop-shadow">
           🌍 About Us
         </h1>
 
-        {/* Intro */}
+      
         <p className="mb-6 text-lg text-center text-gray-600 leading-relaxed">
-          Welcome to <b>Tour Plan Management System</b> – your trusted platform
+          Welcome to <b>Royal Tour</b> – your trusted platform
           for discovering, planning, and booking tours with ease. Our system
           connects customers with different travel agencies that provide{" "}
           <span className="text-blue-600 font-semibold">
@@ -22,13 +22,12 @@ export default function AboutUs() {
           .
         </p>
 
-        {/* Motto */}
         <p className="mb-10 text-center text-xl text-blue-500 italic font-medium">
           ✈️ "Travel made simple, memories made forever." 🌴
         </p>
 
         <div className="space-y-8">
-          {/* Mission */}
+         
           <section>
             <h2 className="mb-2 text-2xl font-bold text-blue-700 flex items-center gap-2">
               🎯 Our Mission
