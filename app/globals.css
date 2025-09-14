@@ -24,6 +24,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+<<<<<<< HEAD
 
 
 .btn-primary {
@@ -47,3 +48,5 @@ body {
          focus:outline-none focus:border-blue-600 transition
          placeholder-gray-400 text-blue-700;
 }
+=======
+>>>>>>> origin/elias
