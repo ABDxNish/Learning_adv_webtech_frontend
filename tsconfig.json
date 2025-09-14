@@ -19,13 +19,20 @@
       }
     ],
     "paths": {
+<<<<<<< HEAD
       "@/*": ["./*"]
+=======
+      "@/*": ["./src/*"]
+>>>>>>> origin/oboni
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> origin/elias
+=======
+>>>>>>> origin/oboni

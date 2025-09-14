@@ -1,7 +1,10 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/elias
+=======
+>>>>>>> origin/oboni
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -39,9 +42,12 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 # Learning_adv_webtech_frontend
 learning advance programming in webtech in summer25-26 at university
 >>>>>>> 8f9a75663f54f33a334fa2457962b99d103ca275
 =======
 >>>>>>> origin/elias
+=======
+>>>>>>> origin/oboni
